@@ -26,6 +26,11 @@ nvidia-smi
 
 # Install nvidia-container-toolkit
 
+apt-get remove -y nvidia-container-toolkit nvidia-container-toolkit-base libnvidia-container-tools libnvidia-container1
+
+apt-get clean
+apt-get update
+
 curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg
 
 curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list | \
@@ -35,7 +40,12 @@ curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-contai
 sed -i -e '/experimental/ s/^#//g' /etc/apt/sources.list.d/nvidia-container-toolkit.list
 
 apt-get update --allow-insecure-repositories
-apt-get install -y nvidia-container-toolkit
+
+apt-get install -y \
+    nvidia-container-toolkit-base=1.17.0-1 \
+    libnvidia-container-tools=1.17.0-1 \
+    libnvidia-container1=1.17.0-1 \
+    nvidia-container-toolkit=1.17.0-1
 
 nvidia-ctk runtime configure --runtime=docker
 systemctl restart docker
