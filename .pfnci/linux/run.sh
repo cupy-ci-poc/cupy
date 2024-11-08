@@ -146,7 +146,7 @@ main() {
       elif [[ "${TARGET}" == cuda-build ]]; then
         docker_args+=()
       else
-        docker_args+=(--runtime=nvidia)
+        # docker_args+=(--runtime=nvidia)
       fi
 
       test_command=(bash "/src/.pfnci/linux/tests/${TARGET}.sh")
