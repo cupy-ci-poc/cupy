@@ -26,6 +26,11 @@ jobs:
 
     - name: Check
       run: |
+        echo "UBUNTU VERSION:"
+        lsb_release -a
+        echo "DRIVER VERSION:"
+        dpkg -l | grep cuda-drivers
+        echo "nvidia-smi:"
         nvidia-smi
 
     - name: Test
