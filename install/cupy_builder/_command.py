@@ -3,7 +3,7 @@ import os
 import os.path
 import subprocess
 import sys
-from typing import Any, Dict, List, Tuple
+from typing import Any, Dict, List, Tuple, Union
 
 import setuptools
 import setuptools.command.build_ext
