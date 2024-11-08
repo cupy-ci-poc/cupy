@@ -1,10 +1,9 @@
 import json
 import os
 import os.path
-from os import PathLike
 import subprocess
 import sys
-from typing import Any, Dict, List, Tuple, Union
+from typing import Any, Dict, List, Tuple
 
 import setuptools
 import setuptools.command.build_ext
@@ -16,9 +15,9 @@ from cupy_builder._compiler import DeviceCompilerUnix, DeviceCompilerWin32
 
 
 def filter_files_by_extension(
-        sources: List[Union[str, PathLike[str]]],
+        sources: List[str],
         extension: str,
-) -> Tuple[List[Union[str, PathLike[str]]], List[str]]:
+) -> Tuple[List[str], List[str]]:
     sources_selected = []
     sources_others = []
     for src in sources:
