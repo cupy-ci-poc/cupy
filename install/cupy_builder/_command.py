@@ -15,9 +15,9 @@ from cupy_builder._compiler import DeviceCompilerUnix, DeviceCompilerWin32
 
 
 def filter_files_by_extension(
-        sources: List[str],
+        sources: List[Union[str, PathLike[str]]],
         extension: str,
-) -> Tuple[List[str], List[str]]:
+) -> Tuple[List[Union[str, PathLike[str]]], List[str]]:
     sources_selected = []
     sources_others = []
     for src in sources:
