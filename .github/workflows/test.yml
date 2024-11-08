@@ -34,7 +34,7 @@ jobs:
 
     - name: Update driver
       run: |
-        ./.pfnci/linux/update-cuda-driver.sh
+        sudo ./.pfnci/linux/update-cuda-driver.sh
 
     - name: Test
       id: test
