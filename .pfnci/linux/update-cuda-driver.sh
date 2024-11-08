@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -ue
+set -uex
 
 echo "Checking for installed cuda-drivers..."
 if dpkg -l | grep -q cuda-drivers; then
@@ -25,6 +25,7 @@ nvidia-smi -pm 1
 nvidia-smi
 
 # Install nvidia-container-toolkit
+
 curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg
 
 curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list | \
