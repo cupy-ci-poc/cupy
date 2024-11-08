@@ -28,10 +28,12 @@ jobs:
       run: |
         echo "UBUNTU VERSION:"
         lsb_release -a
-        echo "DRIVER VERSION:"
-        dpkg -l | grep cuda-drivers
         echo "nvidia-smi:"
         nvidia-smi
+
+    - name: Update driver
+      run: |
+        ./.pfnci/linux/update-cuda-driver.sh
 
     - name: Test
       id: test
