@@ -46,6 +46,7 @@ main() {
 
   TARGET="$1"; shift
   STAGES="$@"
+  RUNTIME=""
 
   repo_root="$(cd "$(dirname "${BASH_SOURCE}")/../.."; pwd)"
   base_branch="$(cat "${repo_root}/.pfnci/BRANCH")"
@@ -146,7 +147,7 @@ main() {
       elif [[ "${TARGET}" == cuda-build ]]; then
         docker_args+=()
       fi
-      if [[ "${RUNTIME}" == *nvidia* ]]; then
+      if [[ "${RUNTIME}" == "nvidia" ]]; then
         docker_args+=(--runtime=nvidia)
       fi
 
