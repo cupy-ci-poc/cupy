@@ -3,7 +3,7 @@
 set -ue
 
 echo "Installed cuda-drivers:"
-dpkg -l | grep cuda-drivers
+dpkg -l
 
 # If CUDA driver of this version is installed, upgrade to the latest one.
 CUDA_DRIVER_VERSION=535

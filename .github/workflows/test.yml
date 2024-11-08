@@ -30,6 +30,8 @@ jobs:
         lsb_release -a
         echo "nvidia-smi:"
         nvidia-smi
+        dpkg -l
+
 
     - name: Update driver
       run: |
