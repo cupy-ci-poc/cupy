@@ -26,7 +26,7 @@ nvidia-smi
 
 # Install nvidia-container-toolkit
 
-apt-get remove -y nvidia-container-toolkit nvidia-container-toolkit-base libnvidia-container-tools libnvidia-container1
+apt-get remove -y nvidia-container-runtime nvidia-container-toolkit nvidia-container-toolkit-base libnvidia-container-tools libnvidia-container1
 
 apt-get clean
 apt-get update
