@@ -145,9 +145,8 @@ main() {
         docker_args+=(--device=/dev/kfd --device=/dev/dri)
       elif [[ "${TARGET}" == cuda-build ]]; then
         docker_args+=()
-      fi
-      if [[ "${RUNTIME:-}" == "nvidia" ]]; then
-        docker_args+=(--runtime=nvidia)
+      else
+        docker_args+=(--gpus=all)
       fi
 
       test_command=(bash "/src/.pfnci/linux/tests/${TARGET}.sh")
