@@ -24,6 +24,10 @@ jobs:
       with:
         submodules: recursive
 
+    - name: Check
+      run: |
+        nvidia-smi
+
     - name: Test
       id: test
       run: |
