@@ -1,9 +1,10 @@
 import json
 import os
 import os.path
+from os import PathLike
 import subprocess
 import sys
-from typing import Any, Dict, List, Tuple, Union, PathLike
+from typing import Any, Dict, List, Tuple, Union
 
 import setuptools
 import setuptools.command.build_ext
