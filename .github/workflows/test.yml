@@ -17,6 +17,7 @@ jobs:
     strategy:
       matrix:
         target: ["cuda-example", "cuda11x-cuda-python", "cuda11x-cuda-python", "cuda112", "cuda118", "cuda118.multi", "cuda120", "cuda120.multi", "cuda126", "cuda126.multi"]
+      fail-fast: false
 
     steps:
     - name: Checkout
