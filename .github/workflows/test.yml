@@ -16,8 +16,11 @@ jobs:
 
     strategy:
       matrix:
-        target: ["cuda-example", "cuda11x-cuda-python", "cuda11x-cuda-python", "cuda112", "cuda118", "cuda118.multi", "cuda120", "cuda120.multi", "cuda126", "cuda126.multi"]
+        target: ["cuda-example", "cuda11x-cuda-python", "cuda11x-cuda-python", "cuda112", "cuda118", "cuda120", "cuda126"]
       fail-fast: false
+
+    env:
+      CUPY_CACHE_DIR: ~/.cupy/kernel_cache
 
     steps:
     - name: Checkout
@@ -32,6 +35,13 @@ jobs:
         echo "nvidia-smi:"
         nvidia-smi
 
+    - name: Cache CuPy kernels
+      uses: actions/cache@v4
+      with:
+        path: ~/.cupy/kernel_cache
+        key: ${{ runner.os }}-cupy-cache
+        restore-keys: |
+          ${{ runner.os }}-cupy-cache
 
     - name: Update driver
       run: |
