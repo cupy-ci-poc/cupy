@@ -20,7 +20,7 @@ jobs:
       fail-fast: false
 
     env:
-      CACHE_DIR: ~/.cupy/kernel_cache
+      CACHE_DIR: /home/runner/.cupy/kernel_cache
 
     steps:
     - name: Checkout
