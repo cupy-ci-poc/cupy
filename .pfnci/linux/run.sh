@@ -141,6 +141,9 @@ main() {
       if [[ "${GPU:-}" != "" ]]; then
         docker_args+=(--env "GPU=${GPU}")
       fi
+      if [[ "${CUPY_NVCC_GENERATE_CODE:-}" != "" ]]; then
+        docker_args+=(--env "CUPY_NVCC_GENERATE_CODE=${CUPY_NVCC_GENERATE_CODE}")
+      fi
       if [[ "${TARGET}" == *rocm* ]]; then
         docker_args+=(--device=/dev/kfd --device=/dev/dri)
       elif [[ "${TARGET}" == cuda-build ]]; then

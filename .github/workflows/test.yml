@@ -16,11 +16,11 @@ jobs:
 
     strategy:
       matrix:
-        target: ["cuda112", "cuda118", "cuda120", "cuda126"]
+        target: ["cuda-example", "cuda11x-cuda-python", "cuda112", "cuda118", "cuda120", "cuda126"]
       fail-fast: false
 
     env:
-      CUPY_CACHE_DIR: ~/.cupy/kernel_cache
+      CACHE_DIR: ~/.cupy/kernel_cache
 
     steps:
     - name: Checkout
@@ -39,7 +39,7 @@ jobs:
       uses: actions/cache@v4
       with:
         path: ~/.cupy/kernel_cache
-        key: ${{ runner.os }}-cupy-cache
+        key: ${{ runner.os }}-${{ matrix.target }}-cupy-cache
         restore-keys: |
           ${{ runner.os }}-cupy-cache
 
@@ -47,7 +47,14 @@ jobs:
       run: |
         sudo ./.pfnci/linux/update-cuda-driver.sh
 
-    - name: Test
+    - name: build
+      run: |
+        ./.pfnci/linux/run.sh ${{ matrix.target }} build
+
+    - name: test
       id: test
       run: |
-        ./.pfnci/linux/run.sh ${{ matrix.target }} build test
+        ./.pfnci/linux/run.sh ${{ matrix.target }} build
+      env:
+        CUPY_NVCC_GENERATE_CODE: "arch=compute_75,code=sm_75"
+        GPU: 1

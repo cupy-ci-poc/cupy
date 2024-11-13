@@ -24,7 +24,9 @@ sudo modprobe -r nvidia_drm nvidia_uvm nvidia_modeset nvidia
 nvidia-smi -pm 1
 nvidia-smi
 
-# Install nvidia-container-toolkit
+# GITHUB ACTIONS REQUIRED
+# The Ubuntu image contains the old nvidia=container-runtime
+# We remove that and install the nvidia-container-toolkit
 
 apt-get remove -y --allow-change-held-packages nvidia-container-runtime nvidia-container-toolkit nvidia-container-toolkit-base libnvidia-container-tools libnvidia-container1
 
