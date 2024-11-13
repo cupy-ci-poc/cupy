@@ -133,7 +133,7 @@ main() {
         docker_args+=(--interactive)
       fi
       if [[ "${CACHE_DIR:-}" != "" ]]; then
-        docker_args+=(--volume="${CACHE_DIR}:${CACHE_DIR}" --env "CACHE_DIR=${CACHE_DIR}")
+        docker_args+=(--volume="${CACHE_DIR}:/cache" --env "CACHE_DIR=/cache")
       fi
       if [[ "${PULL_REQUEST:-}" != "" ]]; then
         docker_args+=(--env "PULL_REQUEST=${PULL_REQUEST}")
