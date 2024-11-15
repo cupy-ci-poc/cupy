@@ -1,0 +1,43 @@
+name: Tests Windows
+
+on:
+  pull_request:
+
+# Concurrency based on workflow name and branch
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  Windows:
+    runs-on:
+      group: cupy-ci
+      labels: windows-gpu
+
+    strategy:
+      matrix:
+        target: ["cuda112"]
+      fail-fast: false
+
+    env:
+      CACHE_DIR: /home/runner/.cupy/kernel_cache
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        submodules: recursive
+
+    - name: Check
+      run: |
+        echo "nvidia-smi:"
+        nvidia-smi
+
+    - name: test
+      id: test
+      run: |
+        .pfnci\windows\run.bat 12.0 3.10 test
+      env:
+        CUPY_NVCC_GENERATE_CODE: "arch=compute_75,code=sm_75"
+        GPU: 1
+
