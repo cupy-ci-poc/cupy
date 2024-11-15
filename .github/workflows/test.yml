@@ -16,7 +16,7 @@ jobs:
 
     strategy:
       matrix:
-        target: ["cuda-example", "cuda11x-cuda-python", "cuda112", "cuda118", "cuda120", "cuda126"]
+        target: ["cuda11x-cuda-python", "cuda112", "cuda118", "cuda120", "cuda126"]
       fail-fast: false
 
     env:
