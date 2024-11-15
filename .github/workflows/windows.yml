@@ -35,10 +35,11 @@ jobs:
 
     - name: Install deps
       run: |
-        choco install -y zlib
-        mkdir C:\Development\ZLIB -Force
-        # The default Chocolatey install location for zlib is typically in C:\ProgramData\chocolatey
-        Copy-Item "C:\ProgramData\chocolatey\lib\zlib\tools\*\*.dll" -Destination "C:\Development\ZLIB\zlibwapi.dll"
+        git clone https://github.com/microsoft/vcpkg.git
+        cd vcpkg
+        .\bootstrap-vcpkg.bat
+        .\vcpkg.exe install zlib
+        .\vcpkg integrate install
       shell: powershell
 
     - name: test
