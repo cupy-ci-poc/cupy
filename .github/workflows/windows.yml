@@ -33,6 +33,10 @@ jobs:
         echo "nvidia-smi:"
         nvidia-smi
 
+    - name: Install deps
+      run: |
+        vcpkg install zlib:x64-windows
+
     - name: test
       id: test
       run: |
