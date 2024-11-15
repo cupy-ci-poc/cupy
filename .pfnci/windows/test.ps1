@@ -120,7 +120,7 @@ function Main {
     $is_pull_request = IsPullRequestTest
     $cache_archive = "windows-cuda${cuda}-${base_branch}.zip"
 
-    DownloadCache "${cache_archive}"
+    # DownloadCache "${cache_archive}"
 
     if (-Not $is_pull_request) {
         $Env:CUPY_TEST_FULL_COMBINATION = "1"
@@ -137,9 +137,9 @@ function Main {
     $test_retval = RunWithTimeout -timeout 18000 -output ../cupy_test_log.txt -- python -m pytest -rfEX @pytest_opts .
     popd
 
-    if (-Not $is_pull_request) {
-        UploadCache "${cache_archive}"
-    }
+    # if (-Not $is_pull_request) {
+    #     UploadCache "${cache_archive}"
+    # }
 
     echo "------------------------------------------------------------------------------------------"
     echo "Last 10 lines from the test output:"

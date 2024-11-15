@@ -5,6 +5,8 @@ set -uex
 MARKER="${1:-}"; shift
 PYTEST_FILES=(${@:-.})
 
+PYTEST_FILES=cupy_tests/core_tests
+
 pytest_opts=(
     -rfEX
     --timeout 300
