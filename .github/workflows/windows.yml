@@ -39,7 +39,7 @@ jobs:
         cd vcpkg
         .\bootstrap-vcpkg.bat
         .\vcpkg.exe install zlib
-        .\vcpkg integrate install
+        .\vcpkg.exe integrate install
       shell: powershell
 
     - name: test
